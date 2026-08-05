@@ -15,6 +15,7 @@ export default function LoginPage() {
   const [email, setEmail] = useState('')
   const [loading, setLoading] = useState(false)
   const [emailSent, setEmailSent] = useState(false)
+  const [testLoading, setTestLoading] = useState(false)
   const router = useRouter()
 
   async function handleLogin(e: React.FormEvent) {
@@ -41,6 +42,22 @@ export default function LoginPage() {
     toast.success('Link de acesso enviado. Verifique seu e-mail.')
   }
 
+  async function handleTestLogin() {
+    setTestLoading(true)
+    const supabase = createClient()
+    const { error } = await supabase.auth.signInWithPassword({
+      email: 'teste@seeds.experience',
+      password: 'seeds1234',
+    })
+    setTestLoading(false)
+    if (error) {
+      toast.error(error.message)
+      return
+    }
+    router.push('/app')
+    router.refresh()
+  }
+
   return (
     <Card className="border shadow-xl">
       <CardHeader className="space-y-2 text-center">
@@ -63,8 +80,20 @@ export default function LoginPage() {
             </Button>
           </div>
         ) : (
-          <form onSubmit={handleLogin} className="space-y-4">
-            <div className="space-y-2">
+          <div className="space-y-6">
+            <div className="space-y-2 rounded-lg bg-muted/50 p-4">
+              <p className="text-sm font-medium text-foreground">Acesso de teste</p>
+              <Label htmlFor="test-email">Login</Label>
+              <Input id="test-email" value="teste@seeds.experience" readOnly />
+              <Label htmlFor="test-password">Senha</Label>
+              <Input id="test-password" value="seeds1234" readOnly type="text" />
+              <Button onClick={handleTestLogin} className="w-full" disabled={testLoading}>
+                {testLoading ? <Loader2 className="mr-2 h-4 w-4 animate-spin" /> : null}
+                Entrar com teste
+              </Button>
+            </div>
+            <form onSubmit={handleLogin} className="space-y-4">
+              <div className="space-y-2">
               <Label htmlFor="email">E-mail</Label>
               <Input
                 id="email"
@@ -80,6 +109,7 @@ export default function LoginPage() {
               Enviar link de acesso
             </Button>
           </form>
+          </div>
         )}
 
         <div className="text-center text-sm text-muted-foreground">
