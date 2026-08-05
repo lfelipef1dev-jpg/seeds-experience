@@ -74,7 +74,7 @@ export function Sidebar({ isAdmin }: { isAdmin: boolean }) {
           onClick={() => setOpen(false)}
           className={cn(
             'flex items-center gap-3 rounded-lg px-3 py-2 text-sm font-medium transition-colors',
-            pathname === item.href || pathname.startsWith(`${item.href}/`)
+            pathname && (pathname === item.href || pathname.startsWith(`${item.href}/`))
               ? 'bg-primary/10 text-primary'
               : 'text-muted-foreground hover:bg-muted hover:text-foreground'
           )}
@@ -92,7 +92,7 @@ export function Sidebar({ isAdmin }: { isAdmin: boolean }) {
             onClick={() => setOpen(false)}
             className={cn(
               'flex items-center gap-3 rounded-lg px-3 py-2 text-sm font-medium transition-colors',
-              pathname.startsWith('/admin')
+              pathname?.startsWith('/admin')
                 ? 'bg-primary/10 text-primary'
                 : 'text-muted-foreground hover:bg-muted hover:text-foreground'
             )}

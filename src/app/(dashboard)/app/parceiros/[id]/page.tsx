@@ -11,8 +11,9 @@ import { ptBR } from 'date-fns/locale'
 import Link from 'next/link'
 import { notFound } from 'next/navigation'
 
-export default async function PartnerDetailPage({ params }: { params: { id: string } }) {
-  const partner = await getPartnerById(params.id)
+export default async function PartnerDetailPage({ params }: { params: Promise<{ id: string }> }) {
+  const { id } = await params
+  const partner = await getPartnerById(id)
   if (!partner) notFound()
 
   const events = await getEvents()
