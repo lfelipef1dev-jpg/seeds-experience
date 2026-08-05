@@ -12,13 +12,14 @@ import { requestConnection } from '@/lib/actions/connections'
 export default async function DirectoryPage({
   searchParams,
 }: {
-  searchParams: { [key: string]: string | string[] | undefined }
+  searchParams: Promise<{ [key: string]: string | string[] | undefined }>
 }) {
   const currentProfile = await getCurrentProfile()
+  const sp = await searchParams
 
-  const search = typeof searchParams.q === 'string' ? searchParams.q : ''
-  const sector = typeof searchParams.setor === 'string' ? searchParams.setor : ''
-  const city = typeof searchParams.cidade === 'string' ? searchParams.cidade : ''
+  const search = typeof sp.q === 'string' ? sp.q : ''
+  const sector = typeof sp.setor === 'string' ? sp.setor : ''
+  const city = typeof sp.cidade === 'string' ? sp.cidade : ''
 
   const profiles = await getProfiles(search, sector, city)
 
