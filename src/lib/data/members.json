@@ -1,0 +1,46 @@
+[
+  {
+    "id": "m1",
+    "name": "Luciana Amorim",
+    "business": "SEEDS Experience",
+    "role": "Fundadora & Comercial",
+    "sector": "Comunidade / Eventos",
+    "city": "São Paulo, SP",
+    "bio": "Idealizadora do SEEDS Experience, uma comunidade que conecta mulheres empreendedoras e marcas parceiras através de experiências imersivas curadas.",
+    "verified": true,
+    "color": "#2B4736"
+  },
+  {
+    "id": "m2",
+    "name": "Brunna Farizel",
+    "business": "Splash Bebidas Urbanas",
+    "role": "Fundadora",
+    "sector": "Food & Beverage",
+    "city": "São Paulo, SP",
+    "bio": "Transformou os desafios da maternidade em impulso para empreender, fundando com o marido a Splash Bebidas Urbanas, hoje presente no Brasil e em Portugal.",
+    "verified": true,
+    "color": "#B5651D"
+  },
+  {
+    "id": "m3",
+    "name": "Carol Muccida",
+    "business": "CORA Consultoria ESG",
+    "role": "Fundadora & Co-fundadora Conexão Favela",
+    "sector": "Sustentabilidade / ESG",
+    "city": "São Paulo, SP",
+    "bio": "Co-fundadora da Conexão Favela, ONG que promove direitos para jovens periféricos desde 2019. Atua com consultoria em sustentabilidade e ESG para empresas.",
+    "verified": true,
+    "color": "#5C7A5A"
+  },
+  {
+    "id": "m4",
+    "name": "Amanda Magalhães",
+    "business": "Hambúrguer Perfeito / MARÉ Estúdio Criativo",
+    "role": "Sócia & Cofundadora",
+    "sector": "Food Service / Design",
+    "city": "Belo Horizonte, MG",
+    "bio": "Sócia do Hambúrguer Perfeito, a maior rede multiplataforma dedicada ao hambúrguer no Brasil. Cofundadora do MARÉ Estúdio Criativo, cerâmica com identidade e intenção.",
+    "verified": true,
+    "color": "#C6A15B"
+  }
+]
