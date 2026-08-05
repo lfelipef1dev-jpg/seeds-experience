@@ -25,7 +25,7 @@ export default function LoginPage() {
     const { error } = await supabase.auth.signInWithOtp({
       email,
       options: {
-        shouldCreateUser: false,
+        shouldCreateUser: true,
         emailRedirectTo: `${location.origin}/auth/callback`,
       },
     })
@@ -49,7 +49,7 @@ export default function LoginPage() {
         </div>
         <CardTitle className="text-2xl">SEEDS Experience</CardTitle>
         <CardDescription>
-          Acesso exclusivo por convite. Insira seu e-mail para receber o link de login.
+          Insira seu e-mail para receber o link de acesso.
         </CardDescription>
       </CardHeader>
       <CardContent className="space-y-4">
