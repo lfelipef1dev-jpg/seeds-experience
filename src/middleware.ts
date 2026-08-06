@@ -1,5 +1,4 @@
 import { type NextRequest, NextResponse } from 'next/server'
-import { createClient } from '@supabase/supabase-js'
 
 const publicRoutes = ['/', '/login', '/convite']
 
@@ -25,13 +24,16 @@ export async function middleware(request: NextRequest) {
   if (cookie) {
     try {
       const session = b64ToJson(cookie)
-      const supabase = createClient(
-        'https://phhurravjunielzxatxe.supabase.co',
-        'sb_publishable_nuIOHxvxef55NYUKPV6FBQ_yH6pwfGc',
-        { auth: { persistSession: false, autoRefreshToken: false } }
-      )
-      const { data, error } = await supabase.auth.getUser(session.access_token)
-      if (!error) user = data.user
+      const res = await fetch('https://phhurravjunielzxatxe.supabase.co/auth/v1/user', {
+        headers: {
+          Authorization: `Bearer ${session.access_token}`,
+          apikey: 'sb_publishable_nuIOHxvxef55NYUKPV6FBQ_yH6pwfGc',
+        },
+      })
+      if (res.ok) {
+        const data = await res.json()
+        user = data
+      }
     } catch {}
   }
 
