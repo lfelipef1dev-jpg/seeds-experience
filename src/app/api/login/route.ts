@@ -21,14 +21,20 @@ export async function POST(request: NextRequest) {
     }
   )
 
-  const { error } = await supabase.auth.signInWithPassword({ email, password })
-  if (error) {
-    return NextResponse.json({ error: error.message }, { status: 401 })
+  const { data, error } = await supabase.auth.signInWithPassword({ email, password })
+  if (error || !data.session) {
+    return NextResponse.json({ error: error?.message || 'no session' }, { status: 401 })
   }
 
   const response = NextResponse.json({ ok: true })
   cookiesToSet.forEach(({ name, value, options }) => {
     response.cookies.set(name, value, options)
+  })
+  response.cookies.set('seeds-access-token', data.session.access_token, {
+    path: '/',
+    maxAge: 60 * 60 * 24 * 365,
+    secure: true,
+    sameSite: 'lax',
   })
   return response
 }
