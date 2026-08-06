@@ -44,18 +44,21 @@ export default function LoginPage() {
 
   async function handleTestLogin() {
     setTestLoading(true)
-    const supabase = createClient()
-    const { error } = await supabase.auth.signInWithPassword({
-      email: 'teste@seeds.experience',
-      password: 'seeds1234',
+    const res = await fetch('/api/login', {
+      method: 'POST',
+      headers: { 'Content-Type': 'application/json' },
+      body: JSON.stringify({
+        email: 'teste@seeds.experience',
+        password: 'seeds1234',
+      }),
     })
     setTestLoading(false)
-    if (error) {
-      toast.error(error.message)
+    if (!res.ok) {
+      const data = await res.json().catch(() => ({}))
+      toast.error(data.error || 'Erro ao entrar')
       return
     }
-    router.push('/app')
-    router.refresh()
+    window.location.href = '/app'
   }
 
   return (
