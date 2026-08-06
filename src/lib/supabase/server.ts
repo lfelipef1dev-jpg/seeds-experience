@@ -29,7 +29,7 @@ export async function createClient() {
 
 export function createServiceClient() {
   return createAdminClient(
-    process.env.NEXT_PUBLIC_SUPABASE_URL!,
+    'https://phhurravjunielzxatxe.supabase.co',
     process.env.SUPABASE_SERVICE_ROLE_KEY!,
     {
       auth: {
