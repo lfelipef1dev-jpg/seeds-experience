@@ -7,8 +7,8 @@ export async function POST(request: NextRequest) {
   const cookiesToSet: { name: string; value: string; options?: any }[] = []
 
   const supabase = createServerClient(
-    'https://phhurravjunielzxatxe.supabase.co',
-    'sb_publishable_nuIOHxvxef55NYUKPV6FBQ_yH6pwfGc',
+    process.env.NEXT_PUBLIC_SUPABASE_URL!,
+    process.env.NEXT_PUBLIC_SUPABASE_ANON_KEY!,
     {
       cookies: {
         getAll() {
@@ -29,12 +29,6 @@ export async function POST(request: NextRequest) {
   const response = NextResponse.json({ ok: true })
   cookiesToSet.forEach(({ name, value, options }) => {
     response.cookies.set(name, value, options)
-  })
-  response.cookies.set('seeds-access-token', data.session.access_token, {
-    path: '/',
-    maxAge: 60 * 60 * 24 * 365,
-    secure: true,
-    sameSite: 'lax',
   })
   return response
 }
