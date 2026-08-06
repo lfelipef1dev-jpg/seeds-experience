@@ -8,7 +8,7 @@ for (let i = 0; i < B64.length; i++) B64_MAP[B64[i]] = i
 
 function b64ToBytes(base64: string): Uint8Array {
   const pad = base64.endsWith('==') ? 2 : base64.endsWith('=') ? 1 : 0
-  const len = (base64.length * 3) / 4 - pad
+  const len = Math.floor((base64.length * 3) / 4 - pad)
   const bytes = new Uint8Array(len)
   let j = 0
   for (let i = 0; i < base64.length; i += 4) {
